@@ -30,16 +30,13 @@ app.use(_bodyParser.urlencoded({ extended: true }));
 /** 
  * ? Adding Application Routes to controll App
  */
-// const controllers = readdirSync(path.join(__dirname, 'controller'))
-// controllers.forEach(controller => {
-//   app.use(`/${controller}`, require(`./controller/${controller}`))
-// })
+
 var accountController = require('./controller/accountController')();
 var masterController = require('./controller/userController')();
-
+var InOutController = require('./controller/InOutController')();
 app.use("/api/account", accountController);
 app.use("/api/user", masterController);
-// app.use("/api/location", locationController);
+ app.use("/api/item", InOutController);
 
 app.get("/message", function(request, response) {
   response.json({ Message: "Welcome to Node js" });
